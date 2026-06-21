@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+  <!-- ============================================================
+     ADVENTURE ISLAND — units.html
+     ============================================================
+     CUSTOMISE THIS SECTION:
+       • units[]  — label, url, colour for each button
+       • --bg     — background gradient (one line, same everywhere)
+
+     GRID LAYOUT:
+       • Landscape tablet/desktop → 5 × 4
+       • Landscape iPhone         → 4 × 5
+       • Portrait tablet/desktop  → 2 × 10
+       • Portrait iPhone          → 2 × 10
+     ============================================================ -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+          maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Units</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :root {
+        --font-chalk:
+          "Chalkboard SE", "Chalkboard", "Comic Neue", "Comic Sans MS", cursive;
+        --bg: linear-gradient(to bottom, #c7e3f4, #3f81a9);
+        --colour-btn-border: #000000;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        max-width: 100vw;
+      }
+
+      body {
+        font-family: var(--font-chalk);
+        background: var(--bg);
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ----------------------------------------------------------
+         GRID WRAPPER
+      ---------------------------------------------------------- */
+      .grid-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      /* ----------------------------------------------------------
+         BUTTONS
+      ---------------------------------------------------------- */
+      .btn {
+        font-family: var(--font-chalk);
+        font-weight: bold;
+        color: yellow;
+        border: 2px solid var(--colour-btn-border);
+        border-radius: 10px;
+        text-decoration: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-text-stroke: 2px orange;
+        transition:
+          transform 0.1s ease,
+          opacity 0.15s ease;
+      }
+
+      .btn:active {
+        transform: scale(0.97);
+        opacity: 0.85;
+      }
+
+      /* ----------------------------------------------------------
+         CORNER IMAGE
+      ---------------------------------------------------------- */
+      .corner-img {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      /* ----------------------------------------------------------
+         LANDSCAPE — 6 × 4
+      ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) {
+        .grid-wrapper {
+          flex: 1;
+          padding: 1vh 2vw 2vh;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          gap: clamp(4px, 1vw, 12px);
+          width: min(99vw, 1200px);
+          height: min(82vh, 650px);
+        }
+
+        .btn {
+          font-size: clamp(0.8rem, 5vw, 8rem);
+        }
+        .btn-small {
+          font-size: clamp(1rem, 4vw, 6rem) !important;
+        }
+
+        .corner-img {
+          bottom: 0 !important;
+          right: 0 !important;
+          top: auto !important;
+          width: clamp(50px, 7vw, 90px) !important;
+          margin-bottom: 30px !important;
+          margin-right: 80px !important;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         LANDSCAPE IPHONE — 4 × 5  (max-height: 450px)
+      ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) and (max-height: 450px) {
+        body {
+          overflow: hidden;
+          width: 100vw;
+          max-width: 100vw;
+        }
+
+        .grid-wrapper {
+          flex: 1 !important;
+          padding: 0 2vw 0 !important;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr) !important;
+          grid-template-rows: repeat(6, 1fr) !important;
+          gap: clamp(2px, 0.5vw, 6px) !important;
+          width: min(96vw, 800px) !important;
+          height: min(64vh, 270px) !important;
+        }
+
+        .btn {
+          font-size: clamp(0.6rem, 3.5vw, 3rem) !important;
+        }
+
+        .corner-img {
+          display: none !important;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         PORTRAIT — 2 × 10
+      ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) {
+        body {
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
+        }
+
+        .grid-wrapper {
+          padding: 2vw 4vw 4vw;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(8, 1fr);
+          gap: clamp(6px, 2vw, 16px);
+          width: 100%;
+          max-width: 700px;
+        }
+
+        .btn {
+          font-size: clamp(1rem, 7vw, 4rem);
+          height: clamp(60px, 23vw, 110px);
+          width: 100%;
+        }
+        .btn-tiny {
+          font-size: clamp(1rem, 5vw, 3rem) !important;
+        }
+        .corner-img {
+          position: fixed;
+          bottom: 40px;
+          right: 120px;
+          top: auto;
+          width: clamp(50px, 8vw, 90px) !important;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         PORTRAIT IPHONE — 2 × 10  (max-width: 430px)
+         To move grid up: decrease margin on .back-btn
+         To move grid down: increase margin on .back-btn
+      ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) and (max-width: 430px) {
+        body {
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
+        }
+
+        .grid-wrapper {
+          padding: 1vw 4vw 4vw !important;
+          padding-top: 2vh !important;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr) !important;
+          grid-template-rows: repeat(8, 1fr) !important;
+          gap: clamp(4px, 1.5vw, 10px) !important;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .btn {
+          font-size: clamp(0.9rem, 7vw, 2.5rem) !important;
+          height: clamp(70px, 18vw, 100px) !important;
+        }
+        .btn-tiny {
+          font-size: clamp(0.7rem, 5vw, 2rem) !important;
+        }
+
+        .corner-img {
+          position: fixed;
+          bottom: 0 !important;
+          right: 0 !important;
+          top: auto;
+          width: clamp(30px, 9vw, 120px) !important;
+          margin-bottom: 10px !important;
+          margin-right: 60px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grid-wrapper">
+      <div class="grid" id="main-grid"></div>
+    </div>
+
+    <img class="corner-img" src="images/Sami4.png" alt="" aria-hidden="true" />
+
+    <script>
+      const units = [
+        {
+          label: "←",
+          url: "index.html",
+          colour: "rgba(0,0,0,0.4)",
+          border: "yellow",
+        },
+        {
+          label: "例",
+          url: "https://player.mediadelivery.net/play/586195/48d237dd-a2b7-4f6a-bbcf-5ba6f84717c1",
+          colour: "#c7e3f4",
+          font: "'Hiragino Sans', 'Noto Sans CJK JP', 'Yu Gothic', sans-serif",
+        },
+        {
+          label: "1a",
+          url: "https://player.mediadelivery.net/play/586241/b063297f-e8cb-4cc5-a7aa-dacccb46a81f",
+          colour: "#3f81a9",
+        },
+        {
+          label: "1b",
+          url: "https://player.mediadelivery.net/play/586241/a9a9ad12-d07e-4dd3-a4ba-fbccdbfd9838",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "1c",
+          url: "https://player.mediadelivery.net/play/586241/99ab6e9a-8d26-4603-9473-4b7b83936a68",
+          colour: "#3f81a9",
+        },
+        {
+          label: "2a",
+          url: "https://player.mediadelivery.net/play/586241/373bd4d6-d397-4e32-85ae-b4f7f59e3d50",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "2b",
+          url: "https://player.mediadelivery.net/play/586241/abe92e02-86ee-48d6-99be-7eeba35226d8",
+          colour: "#3f81a9",
+        },
+        {
+          label: "3a",
+          url: "https://player.mediadelivery.net/play/586241/9a33730f-48a1-4203-8af8-05503e8ad0ad",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "3b",
+          url: "https://player.mediadelivery.net/play/586241/4010a3d1-43e4-407e-9dcd-ab6fca035674",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "4",
+          url: "https://player.mediadelivery.net/play/586241/cda3c6ae-6c09-4535-bc5c-7ea92d974379",
+          colour: "#3f81a9",
+        },
+        {
+          label: "5a",
+          url: "https://player.mediadelivery.net/play/586241/65783115-a499-4ac9-b28f-c74af3069331",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "5b",
+          url: "https://player.mediadelivery.net/play/586241/68c68163-8025-4d14-8fac-cfec2233879a",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "6a",
+          url: "https://player.mediadelivery.net/play/586241/e5f44481-99ff-403a-9c77-d0b8337c7a08",
+          colour: "#3f81a9",
+        },
+        {
+          label: "6b",
+          url: "https://player.mediadelivery.net/play/586241/2b688df3-dd3a-477d-b890-4e4a145c5ae8",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "7",
+          url: "https://player.mediadelivery.net/play/586241/80dc31a7-dcdb-46bd-9be9-6ab913c73a06",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "8a",
+          url: "https://player.mediadelivery.net/play/586241/dfb87f64-b2d2-42a3-9bb0-32c0a8322f78",
+          colour: "#3f81a9",
+        },
+        {
+          label: "8L",
+          url: "https://player.mediadelivery.net/play/586241/37df8a3a-ae82-4103-8058-5e5c4c9ddc0e",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "8b",
+          url: "https://player.mediadelivery.net/play/586241/29f08d27-05b3-47a7-b028-ea7d70d83fa4",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "9a",
+          url: "https://player.mediadelivery.net/play/586241/b51d242e-5418-4d8f-9528-9043164a99c0",
+          colour: "#3f81a9",
+        },
+        {
+          label: "9b",
+          url: "https://player.mediadelivery.net/play/586241/9d64d77f-c4f6-436e-9b29-6e6f90c3f9e9",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "10a",
+          url: "https://player.mediadelivery.net/play/586241/2206613c-0279-49b2-b26a-8d885af0442c",
+          colour: "#c7e3f4",
+          small: true,
+        },
+        {
+          label: "10b",
+          url: "https://player.mediadelivery.net/play/586241/2206613c-0279-49b2-b26a-8d885af0442c",
+          colour: "#c7e3f4",
+          small: true,
+        },
+
+        {
+          label: "comic",
+          url: "https://player.mediadelivery.net/play/586241/ef262a3f-7718-435d-81a9-7ddaf8c91891",
+          colour: "#7ab8d9",
+        },
+      ];
+
+      function buildGrid() {
+        const grid = document.getElementById("main-grid");
+        grid.innerHTML = "";
+        units.forEach(function (unit) {
+          var link = document.createElement("a");
+          link.className = "btn";
+          link.href = unit.url;
+          link.style.backgroundColor = unit.colour;
+          if (unit.border) {
+            link.style.border = "2px solid " + unit.border;
+            link.style.color = "yellow";
+          }
+          if (unit.small) {
+            link.classList.add("btn-small");
+          }
+          if (unit.customClass) {
+            link.classList.add(unit.customClass);
+          }
+          link.textContent = unit.label;
+          if (unit.font) {
+            link.style.fontFamily = unit.font;
+          }
+          grid.appendChild(link);
+        });
+      }
+
+      buildGrid();
+
+      var resizeTimer;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildGrid, 150);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="en">
+  <!-- ============================================================
+     ADVENTURE ISLAND — units.html
+     ============================================================
+     CUSTOMISE THIS SECTION:
+       • units[]  — label, url, colour for each button
+       • --bg     — background gradient (one line, same everywhere)
+
+     GRID LAYOUT:
+       • Landscape tablet/desktop → 5 × 4
+       • Landscape iPhone         → 4 × 5
+       • Portrait tablet/desktop  → 2 × 10
+       • Portrait iPhone          → 2 × 10
+     ============================================================ -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+          maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Units</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :root {
+        --font-chalk:
+          "Chalkboard SE", "Chalkboard", "Comic Neue", "Comic Sans MS", cursive;
+        --bg: linear-gradient(to bottom, #c7e3f4, #3f81a9);
+        --colour-btn-border: #000000;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        max-width: 100vw;
+      }
+
+      body {
+        font-family: var(--font-chalk);
+        background: var(--bg);
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ----------------------------------------------------------
+         GRID WRAPPER
+      ---------------------------------------------------------- */
+      .grid-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+      }
+
+      /* ----------------------------------------------------------
+         BUTTONS
+      ---------------------------------------------------------- */
+      .btn {
+        font-family: var(--font-chalk);
+        font-weight: bold;
+        color: yellow;
+        border: 2px solid var(--colour-btn-border);
+        border-radius: 10px;
+        text-decoration: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        overflow: hidden;
+        -webkit-user-select: none;
+        user-select: none;
+        -webkit-text-stroke: 2px orange;
+        transition:
+          transform 0.1s ease,
+          opacity 0.15s ease;
+      }
+
+      .btn:active {
+        transform: scale(0.97);
+        opacity: 0.85;
+      }
+
+      /* ----------------------------------------------------------
+         CORNER IMAGE
+      ---------------------------------------------------------- */
+      .corner-img {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      /* ----------------------------------------------------------
+         LANDSCAPE — 6 × 4
+      ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) {
+        .grid-wrapper {
+          flex: 1;
+          padding: 1vh 2vw 2vh;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: repeat(4, 1fr);
+          gap: clamp(4px, 1vw, 12px);
+          width: min(99vw, 1200px);
+          height: min(82vh, 650px);
+        }
+
+        .btn {
+          font-size: clamp(0.8rem, 5vw, 8rem);
+        }
+        .btn-small {
+          font-size: clamp(1rem, 4vw, 6rem) !important;
+        }
+
+        .corner-img {
+          bottom: 0 !important;
+          right: 0 !important;
+          top: auto !important;
+          width: clamp(50px, 7vw, 90px) !important;
+          margin-bottom: 30px !important;
+          margin-right: 80px !important;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         LANDSCAPE IPHONE — 4 × 5  (max-height: 450px)
+      ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) and (max-height: 450px) {
+        body {
+          overflow: hidden;
+          width: 100vw;
+          max-width: 100vw;
+        }
+
+        .grid-wrapper {
+          flex: 1 !important;
+          padding: 0 2vw 0 !important;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr) !important;
+          grid-template-rows: repeat(6, 1fr) !important;
+          gap: clamp(2px, 0.5vw, 6px) !important;
+          width: min(96vw, 800px) !important;
+          height: min(64vh, 270px) !important;
+        }
+
+        .btn {
+          font-size: clamp(0.6rem, 3.5vw, 3rem) !important;
+        }
+
+        .corner-img {
+          display: none !important;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         PORTRAIT — 2 × 10
+      ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) {
+        body {
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
+        }
+
+        .grid-wrapper {
+          padding: 2vw 4vw 4vw;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(8, 1fr);
+          gap: clamp(6px, 2vw, 16px);
+          width: 100%;
+          max-width: 700px;
+        }
+
+        .btn {
+          font-size: clamp(1rem, 7vw, 4rem);
+          height: clamp(60px, 23vw, 110px);
+          width: 100%;
+        }
+        .btn-tiny {
+          font-size: clamp(1rem, 5vw, 3rem) !important;
+        }
+        .corner-img {
+          position: fixed;
+          bottom: 40px;
+          right: 120px;
+          top: auto;
+          width: clamp(50px, 8vw, 90px) !important;
+        }
+      }
+
+      /* ----------------------------------------------------------
+         PORTRAIT IPHONE — 2 × 10  (max-width: 430px)
+         To move grid up: decrease margin on .back-btn
+         To move grid down: increase margin on .back-btn
+      ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) and (max-width: 430px) {
+        body {
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
+        }
+
+        .grid-wrapper {
+          padding: 1vw 4vw 4vw !important;
+          padding-top: 2vh !important;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr) !important;
+          grid-template-rows: repeat(8, 1fr) !important;
+          gap: clamp(4px, 1.5vw, 10px) !important;
+          width: 100% !important;
+          max-width: 100% !important;
+        }
+
+        .btn {
+          font-size: clamp(0.9rem, 7vw, 2.5rem) !important;
+          height: clamp(70px, 18vw, 100px) !important;
+        }
+        .btn-tiny {
+          font-size: clamp(0.7rem, 5vw, 2rem) !important;
+        }
+
+        .corner-img {
+          position: fixed;
+          bottom: 0 !important;
+          right: 0 !important;
+          top: auto;
+          width: clamp(30px, 9vw, 120px) !important;
+          margin-bottom: 10px !important;
+          margin-right: 60px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="grid-wrapper">
+      <div class="grid" id="main-grid"></div>
+    </div>
+
+    <img class="corner-img" src="images/Kevin4.png" alt="" aria-hidden="true" />
+
+    <script>
+      const units = [
+        {
+          label: "←",
+          url: "index.html",
+          colour: "rgba(0,0,0,0.4)",
+          border: "yellow",
+        },
+        {
+          label: "11a",
+          url: "https://player.mediadelivery.net/play/586241/b1f4689b-1fc6-45e9-9120-8c9c2d18545b",
+          colour: "#3f81a9",
+        },
+        {
+          label: "11b",
+          url: "https://player.mediadelivery.net/play/586241/3be7d211-a35b-436d-885a-e3de8afe72d1",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "12a",
+          url: "https://player.mediadelivery.net/play/586241/5b78449d-f648-45b3-ad99-f4582346d779",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "12b",
+          url: "https://player.mediadelivery.net/play/586241/10f2bce6-d940-4b6d-8554-11b69bfeb6be",
+          colour: "#3f81a9",
+        },
+        {
+          label: "13",
+          url: "https://player.mediadelivery.net/play/586241/0ee0c7bf-0a26-43b1-be19-216213158c15",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "14a",
+          url: "https://player.mediadelivery.net/play/586241/9815ddff-bbf0-41fc-84e4-25bedea00623",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "14b",
+          url: "https://player.mediadelivery.net/play/586241/06acfb94-50e1-4549-a941-b445c0134601",
+          colour: "#3f81a9",
+        },
+        {
+          label: "15a",
+          url: "https://player.mediadelivery.net/play/586241/ef1d1a83-fd53-4e7b-8dca-1480d2583291",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "15b",
+          url: "https://player.mediadelivery.net/play/586241/bfdd02e4-b9f7-435c-b819-acc22173ae2e",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "16",
+          url: "https://player.mediadelivery.net/play/586241/a79c1458-46f9-49c5-9896-1cd23fee6c1e",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "17a",
+          url: "https://player.mediadelivery.net/play/586241/a19bcf12-ebd6-4f84-857e-27b7905d9c3e",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "17L",
+          url: "https://player.mediadelivery.net/play/586241/f6c6bdd1-0028-4085-8ea2-3dd62d10be58",
+          colour: "#3f81a9",
+        },
+        {
+          label: "17b",
+          url: "https://player.mediadelivery.net/play/586241/2513c23e-6b8b-4d85-9dd8-c2bbc6f70f1f",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "18a",
+          url: "https://player.mediadelivery.net/play/586241/e85f139c-fc6a-485c-9cce-52966cf3ffa3",
+          colour: "#3f81a9",
+        },
+        {
+          label: "18L",
+          url: "https://player.mediadelivery.net/play/586241/9c71869f-8147-40a4-9add-0911f3a2cbe0",
+          colour: "#7ab8d9",
+        },
+        {
+          label: "18b",
+          url: "https://player.mediadelivery.net/play/586241/89777910-d617-49f9-a072-c460b6da967e",
+          colour: "#c7e3f4",
+        },
+        {
+          label: "19",
+          url: "https://player.mediadelivery.net/play/586241/190c3a94-3f44-4373-9fd0-084708892abb",
+          colour: "#3f81a9",
+        },
+        {
+          label: "10a",
+          url: "https://player.mediadelivery.net/play/586241/97609bcf-9696-4b61-ae46-b894af097f54",
+          colour: "#c7e3f4",
+          small: true,
+        },
+        {
+          label: "10b",
+          url: "https://player.mediadelivery.net/play/586241/97609bcf-9696-4b61-ae46-b894af097f54",
+          colour: "#c7e3f4",
+          small: true,
+        },
+        {
+          label: "comic",
+          url: "https://player.mediadelivery.net/play/586241/6169c40b-20b8-4625-866a-d0bc0a192043",
+          colour: "#7ab8d9",
+        },
+      ];
+
+      function buildGrid() {
+        const grid = document.getElementById("main-grid");
+        grid.innerHTML = "";
+        units.forEach(function (unit) {
+          var link = document.createElement("a");
+          link.className = "btn";
+          link.href = unit.url;
+          link.style.backgroundColor = unit.colour;
+          if (unit.border) {
+            link.style.border = "2px solid " + unit.border;
+            link.style.color = "yellow";
+          }
+          if (unit.small) {
+            link.classList.add("btn-small");
+          }
+          if (unit.customClass) {
+            link.classList.add(unit.customClass);
+          }
+          link.textContent = unit.label;
+          grid.appendChild(link);
+        });
+      }
+
+      buildGrid();
+
+      var resizeTimer;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildGrid, 150);
+      });
+    </script>
+  </body>
+</html>
